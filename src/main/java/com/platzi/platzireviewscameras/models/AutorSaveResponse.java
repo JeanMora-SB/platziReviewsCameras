@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class AutorResponse {
+public class AutorSaveResponse {
 
     AutorDTO autorDto;
 }

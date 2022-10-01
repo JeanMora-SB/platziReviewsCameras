@@ -14,6 +14,8 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AutorDTO {
 
+    @JsonProperty("id")
+    private Long id;
     @JsonProperty("nombre")
     private String nombre;
     @JsonProperty("telefono")

@@ -6,25 +6,29 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.Hibernate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
+
+import static javax.persistence.GenerationType.IDENTITY;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity(name = "autor")
+@Entity
+@Table
 public class Autor {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
+    @Column
     private String nombre;
+    @Column(length=10, unique=true)
     private String telefono;
-    private String emeail;
+    @Column
+    private String email;
+    @Column
     private String pais;
 
     @Override
