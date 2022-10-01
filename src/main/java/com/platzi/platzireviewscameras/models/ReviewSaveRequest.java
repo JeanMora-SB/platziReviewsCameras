@@ -1,6 +1,7 @@
 package com.platzi.platzireviewscameras.models;
 
-import com.platzi.platzireviewscameras.dto.AutorDTO;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.platzi.platzireviewscameras.dto.ReviewDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,7 +11,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class AutorSaveResponse {
+public class ReviewSaveRequest {
 
-    private AutorDTO autorDto;
+    @JsonProperty("reviewDto")
+    private ReviewDTO reviewDTO;
+
 }

@@ -1,6 +1,6 @@
 package com.platzi.platzireviewscameras.models;
 
-import com.platzi.platzireviewscameras.dto.AutorDTO;
+import com.platzi.platzireviewscameras.dto.ReviewDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class AutorSaveResponse {
+public class ReviewObtenerResponse {
 
-    private AutorDTO autorDto;
+    private ReviewDTO reviewDTO;
 }
