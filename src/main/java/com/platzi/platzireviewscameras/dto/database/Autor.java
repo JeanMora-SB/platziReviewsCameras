@@ -21,7 +21,8 @@ public class Autor {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    private Long id;
+    @Column(name = "IDAUTOR")
+    private Long idAutor;
     @Column
     private String nombre;
     @Column(length=10, unique=true)
@@ -36,7 +37,7 @@ public class Autor {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         Autor autor = (Autor) o;
-        return id != null && Objects.equals(id, autor.id);
+        return idAutor != null && Objects.equals(idAutor, autor.idAutor);
     }
 
     @Override

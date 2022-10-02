@@ -19,8 +19,8 @@ public class Review {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "ID")
-    private Long id;
+    @Column(name = "IDREVIEW")
+    private Long idReview;
 
     @Column(name = "TITULO")
     private String titulo;
@@ -28,12 +28,12 @@ public class Review {
     @Column(name = "CONTENIDO")
     private String contenido;
 
-    @JoinColumn(name = "ID_AUTOR")
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne
+    @JoinColumn(name = "IDAUTOR")
     private Autor autor;
 
-    @JoinColumn(name = "ID_PRODUCTO")
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne
+    @JoinColumn(name = "IDPRODUCTO")
     private Producto producto;
 
 }

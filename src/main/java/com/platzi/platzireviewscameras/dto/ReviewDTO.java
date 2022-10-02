@@ -20,8 +20,8 @@ import static javax.persistence.GenerationType.IDENTITY;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ReviewDTO {
 
-    @JsonProperty(namespace = "id")
-    private Long id;
+    @JsonProperty(namespace = "idReview")
+    private Long idReview;
 
     @JsonProperty(namespace = "titulo")
     private String titulo;
@@ -34,4 +34,10 @@ public class ReviewDTO {
 
     @JsonProperty(namespace = "idProducto")
     private Long idProducto;
+
+    @JsonProperty(namespace = "autorDto")
+    private AutorDTO autorDto;
+
+    @JsonProperty(namespace = "producto")
+    private Producto producto;
 }

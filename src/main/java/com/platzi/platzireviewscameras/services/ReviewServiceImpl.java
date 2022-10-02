@@ -1,12 +1,16 @@
 package com.platzi.platzireviewscameras.services;
 
 import com.platzi.platzireviewscameras.dto.ReviewDTO;
+import com.platzi.platzireviewscameras.dto.database.Autor;
+import com.platzi.platzireviewscameras.dto.database.Producto;
 import com.platzi.platzireviewscameras.dto.database.Review;
 import com.platzi.platzireviewscameras.handler.mapper.ReviewMapper;
 import com.platzi.platzireviewscameras.models.AutorObtenerResponse;
 import com.platzi.platzireviewscameras.models.ReviewObtenerResponse;
 import com.platzi.platzireviewscameras.models.ReviewSaveRequest;
 import com.platzi.platzireviewscameras.models.ReviewSaveResponse;
+import com.platzi.platzireviewscameras.repository.AutorRepository;
+import com.platzi.platzireviewscameras.repository.ProductoRepository;
 import com.platzi.platzireviewscameras.repository.ReviewRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +27,26 @@ public class ReviewServiceImpl implements IReviewService{
     ReviewRepository reviewRepository;
 
     @Autowired
+    AutorRepository autorRepository;
+
+    @Autowired
+    ProductoRepository productoRepository;
+
+
+    @Autowired
     ReviewMapper reviewMapper;
 
     @Override
     public ReviewSaveResponse saveReview(ReviewSaveRequest reviewSaveRequest) {
-        Review review=reviewMapper.dtoToEntity(reviewSaveRequest.getReviewDTO());
 
+        Autor autor=autorRepository.findById(reviewSaveRequest.getReviewDTO().getIdAutor()).orElse(null);
+        Producto producto= productoRepository.findById(reviewSaveRequest.getReviewDTO().getIdProducto()).orElse(null);
+        Review review=reviewMapper.dtoToEntity(reviewSaveRequest.getReviewDTO());
+        log.info("ReviewDTO: {}",reviewSaveRequest.getReviewDTO());
+        review.setAutor(autor);
+        review.setProducto(producto);
         log.info("Review: {}",review);
+
 
         ReviewDTO reviewDto=reviewMapper.EntitytoDTO(reviewRepository.save(review));
         ReviewSaveResponse reviewSaveResponse =new ReviewSaveResponse();
@@ -50,7 +67,7 @@ public class ReviewServiceImpl implements IReviewService{
             x.setReviewDTO(reviewDto.get(i[0]));
             i[0]++;
         });
-        log.info("autorResponse, {}: ",reviewObtenerResponse);
+        log.info("ReviewResponse, {}: ",reviewObtenerResponse);
         return reviewObtenerResponse;
     }
 }
