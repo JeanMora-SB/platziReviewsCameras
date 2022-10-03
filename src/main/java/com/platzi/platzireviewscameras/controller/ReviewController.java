@@ -3,7 +3,7 @@ package com.platzi.platzireviewscameras.controller;
 import com.platzi.platzireviewscameras.models.ReviewObtenerResponse;
 import com.platzi.platzireviewscameras.models.ReviewSaveRequest;
 import com.platzi.platzireviewscameras.models.ReviewSaveResponse;
-import com.platzi.platzireviewscameras.services.ReviewServiceImpl;
+import com.platzi.platzireviewscameras.services.IReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,18 +17,18 @@ import java.util.List;
 public class ReviewController {
 
     @Autowired
-    ReviewServiceImpl reviewServiceImpl;
+    IReviewService IReviewService;
 
     @PostMapping("/save/review")
     public ResponseEntity<ReviewSaveResponse> saveReview(@RequestBody ReviewSaveRequest reviewSaveRequest){
 
-        ReviewSaveResponse reviewSaveResponse = reviewServiceImpl.saveReview(reviewSaveRequest);
+        ReviewSaveResponse reviewSaveResponse = IReviewService.saveReview(reviewSaveRequest);
         return new ResponseEntity<>(reviewSaveResponse, HttpStatus.OK);
     }
 
     @GetMapping("/review")
     public List<ReviewObtenerResponse> obtenerAutores(){
 
-        return reviewServiceImpl.getAllReviews();
+        return IReviewService.getAllReviews();
     }
 }

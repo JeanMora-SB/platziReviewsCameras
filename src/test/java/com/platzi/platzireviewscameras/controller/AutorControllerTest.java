@@ -31,7 +31,7 @@ public class AutorControllerTest {
     }
 
     @Test
-    void SaveAutorTest () {
+    void saveAutorTest () {
         Mockito.when(
                         iAutorService.saveAutor(autorSaveRequest))
                 .thenReturn(autorSaveResponse);
